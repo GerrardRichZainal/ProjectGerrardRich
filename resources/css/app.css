@@ -5,3 +5,11 @@
 body {
   @apply bg-brownLight text-brownDark font-poppins;
 }
+body.dark-mode {
+  background-color: #1e1e1e;
+  color: #f8f9fa;
+}
+body.dark-mode .navbar { background-color: #3a2c28 !important; }
+body.dark-mode footer { background-color: #2b211f !important; }
+body.dark-mode .card { background-color: #2b2b2b; color:#f8f9fa; border:1px solid #3a3a3a; }
+body.dark-mode h1, body.dark-mode h5 { color:#e0c097 !important; }
