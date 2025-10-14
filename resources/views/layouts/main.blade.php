@@ -1,60 +1,132 @@
 <!DOCTYPE html>
-<html lang="{{ request()->get('lang','en') }}">
+<html lang="{{ request()->get('lang')==='id'?'id':'en' }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Gerrard Portfolio')</title>
+  <title>@yield('title','Portfolio')</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
   <style>
-    :root {
-      --light-bg:#f9f5f2; --dark-bg:#1e1b1a;
-      --light-text:#3d2b2b; --dark-text:#f7f3f1;
-      --accent:#a37565; --card-bg-light:#fff; --card-bg-dark:#2b2423;
+    html, body {
+      height: 100%;
+      margin: 0;
+      transition: background-color 0.3s, color 0.3s;
     }
-    body { font-family: 'Poppins',sans-serif; background:var(--light-bg); color:var(--light-text); transition:0.4s;}
-    body.dark-mode { background:var(--dark-bg); color:var(--dark-text);}
-    .card { border-radius:15px; transition:transform 0.3s, background 0.3s; background:var(--card-bg-light);}
-    body.dark-mode .card { background:var(--card-bg-dark); color:var(--dark-text);}
-    .card:hover { transform:translateY(-6px); box-shadow:0 6px 18px rgba(0,0,0,0.2);}
-    .btn-brown { background-color:var(--accent); color:#fff; border:none; }
-    .btn-brown:hover { opacity:0.85; }
-    .text-brown{ color:#5a3e2b;}
+
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    main {
+      flex: 1; /* dorong footer ke bawah */
+    }
+
+    .btn-brown {
+      background-color: #8B4513;
+      color: white;
+    }
+
+    .btn-brown:hover {
+      background-color: #A0522D;
+      color: white;
+    }
+
+    footer {
+      background-color: #8B4513;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    /* DARK MODE */
+    body.dark-mode {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+
+    body.dark-mode .card {
+      background-color: #1f1f1f;
+      color: #e0e0e0;
+    }
+
+    /* Footer tetap cokelat di dark mode */
+    body.dark-mode footer {
+      background-color: #8B4513;
+      color: white;
+    }
   </style>
 </head>
-<body class="@yield('body-class')">
+<body>
 
-@include('partials.navbar')
+  {{-- NAVBAR COKELAT, MENU KANAN, DARK MODE & BAHASA --}}
+  <nav class="navbar navbar-expand-lg" style="background-color:#8B4513;">
+    <div class="container">
+      <a class="navbar-brand text-white" href="/">Portfolio</a>
 
-<div class="container mt-5 fade-in" id="content">
-  @yield('content')
-</div>
+      {{-- Toggler untuk mobile --}}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-@include('partials.footer')
+      <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
+        <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/blog">Blog</a>
+          </li>
+          <li class="nav-item ms-3">
+            <button id="toggleDark" class="btn btn-sm btn-light">🌙</button>
+          </li>
+          <li class="nav-item ms-2">
+            <select id="langSelect" class="form-select form-select-sm">
+              <option value="en" {{ request()->get('lang')==='en'?'selected':'' }}>EN</option>
+              <option value="id" {{ request()->get('lang')==='id'?'selected':'' }}>ID</option>
+            </select>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({duration:1000});
+  {{-- KONTEN HALAMAN --}}
+  <main class="container py-5">
+    @yield('content')
+  </main>
 
-  // Dark Mode
-  const darkBtn = document.getElementById('darkToggle');
-  if(darkBtn){ darkBtn.addEventListener('click', ()=>{
-    document.body.classList.toggle('dark-mode');
-    darkBtn.textContent = document.body.classList.contains('dark-mode') ? '☀️ Light' : '🌙 Dark';
-  })}
+  {{-- FOOTER --}}
+  <footer class="mt-auto">
+    &copy; 2025 Created by Gerrard Rich Zainal
+  </footer>
 
-  // Language EN/ID
-  const langSelect = document.getElementById('langSelect');
-  if(langSelect){
-    langSelect.addEventListener('change', ()=>{
-      const lang = langSelect.value;
-      let url = new URL(window.location.href);
-      url.searchParams.set('lang', lang);
-      window.location.href = url.toString();
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // DARK MODE
+    const btn = document.getElementById('toggleDark');
+    btn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     });
-  }
-</script>
-@yield('scripts')
+
+    // PILIHAN BAHASA
+    const langSelect = document.getElementById('langSelect');
+    langSelect.addEventListener('change', () => {
+      const lang = langSelect.value;
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('lang', lang);
+      window.location.href = currentUrl.href;
+    });
+  </script>
 </body>
 </html>

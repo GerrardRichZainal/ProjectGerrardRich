@@ -10,42 +10,65 @@
   </div>
 
   <div class="col-md-7">
+    <h2 class="fw-bold text-brown">Gerrard Rich Zainal</h2>
+
     @if($lang==='en')
-      <h2 class="fw-bold text-brown">Gerrard Rich Zainal</h2>
       <p class="mt-3">
         I’m an <b>Informatics student</b> at <b>Universitas Ciputra Surabaya – Kampus Kota Makassar</b>.<br>
         I specialize in <b>UI/UX Design</b> and digital product development.<br>
         I love turning ideas into creative, impactful designs that connect with people.
       </p>
       <h5 class="mt-4 fw-semibold">💼 Skills</h5>
-      <ul>
-        <li>Figma, Adobe XD, Photoshop</li>
-        <li>Prototyping & Wireframing</li>
-        <li>Frontend with HTML, CSS, Bootstrap</li>
-      </ul>
+      <div class="mb-2">Figma & Adobe XD</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-brown" role="progressbar" style="width:90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div class="mb-2">Frontend (HTML, CSS, Bootstrap)</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-brown" role="progressbar" style="width:80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
       <h5 class="mt-4 fw-semibold">🌐 Languages</h5>
-      <ul>
-        <li>Indonesian — 100%</li>
-        <li>English — 70%</li>
-      </ul>
+      <div class="mb-2">Indonesian</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-success" role="progressbar" style="width:100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div class="mb-2">English</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-info" role="progressbar" style="width:70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
     @else
-      <h2 class="fw-bold text-brown">Gerrard Rich Zainal</h2>
       <p class="mt-3">
         Saya adalah mahasiswa <b>Informatika</b> di <b>Universitas Ciputra Surabaya – Kampus Kota Makassar</b>.<br>
         Fokus saya pada <b>Desain UI/UX</b> dan pengembangan produk digital.<br>
         Saya suka mengubah ide menjadi desain kreatif yang berdampak dan mudah digunakan.
       </p>
+
       <h5 class="mt-4 fw-semibold">💼 Keahlian</h5>
-      <ul>
-        <li>Figma, Adobe XD, Photoshop</li>
-        <li>Pembuatan prototipe & wireframe</li>
-        <li>Frontend dengan HTML, CSS, Bootstrap</li>
-      </ul>
+      <div class="mb-2">Figma & Adobe XD</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-brown" role="progressbar" style="width:90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div class="mb-2">Frontend (HTML, CSS, Bootstrap)</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-brown" role="progressbar" style="width:90%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
       <h5 class="mt-4 fw-semibold">🌐 Bahasa</h5>
-      <ul>
-        <li>Bahasa Indonesia — 100%</li>
-        <li>Bahasa Inggris — 70%</li>
-      </ul>
+      <div class="mb-2">Bahasa Indonesia</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-success" role="progressbar" style="width:100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
+      <div class="mb-2">Bahasa Inggris</div>
+      <div class="progress mb-3" style="height:8px;">
+        <div class="progress-bar bg-info" role="progressbar" style="width:70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+
     @endif
   </div>
 </div>
@@ -53,5 +76,10 @@
 <style>
 .hover-scale { transition: transform 0.4s ease; }
 .hover-scale:hover { transform: scale(1.05); }
+
+/* Optional: progress bar animation */
+.progress-bar {
+  transition: width 1s ease-in-out;
+}
 </style>
 @endsection
