@@ -21,7 +21,7 @@
     }
 
     main {
-      flex: 1; /* dorong footer ke bawah */
+      flex: 1;
     }
 
     .btn-brown {
@@ -41,7 +41,6 @@
       padding: 1rem;
     }
 
-    /* DARK MODE */
     body.dark-mode {
       background-color: #121212;
       color: #e0e0e0;
@@ -52,7 +51,6 @@
       color: #e0e0e0;
     }
 
-    /* Footer tetap cokelat di dark mode */
     body.dark-mode footer {
       background-color: #8B4513;
       color: white;
@@ -60,13 +58,10 @@
   </style>
 </head>
 <body>
-
-  {{-- NAVBAR COKELAT, MENU KANAN, DARK MODE & BAHASA --}}
   <nav class="navbar navbar-expand-lg" style="background-color:#8B4513;">
     <div class="container">
       <a class="navbar-brand text-white" href="/">Portfolio</a>
 
-      {{-- Toggler untuk mobile --}}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
         aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -74,15 +69,13 @@
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
         <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/blog">Blog</a>
-          </li>
+          <li class="nav-item"><a class="nav-link text-white" href="/home">Home</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/about">About</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/project">Project</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/blog">Blog</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
+
           <li class="nav-item ms-3">
             <button id="toggleDark" class="btn btn-sm btn-light">🌙</button>
           </li>
@@ -97,12 +90,10 @@
     </div>
   </nav>
 
-  {{-- KONTEN HALAMAN --}}
   <main class="container py-5">
     @yield('content')
   </main>
 
-  {{-- FOOTER --}}
   <footer class="mt-auto">
     &copy; 2025 Created by Gerrard Rich Zainal
   </footer>
@@ -112,14 +103,12 @@
   <script>
     AOS.init();
 
-    // DARK MODE
     const btn = document.getElementById('toggleDark');
     btn.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       btn.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     });
 
-    // PILIHAN BAHASA
     const langSelect = document.getElementById('langSelect');
     langSelect.addEventListener('change', () => {
       const lang = langSelect.value;
