@@ -72,6 +72,7 @@
           <li class="nav-item"><a class="nav-link text-white" href="/home">Home</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/about">About</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/project">Project</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/experience">Experience</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/jobs">Jobs</a></li>
 

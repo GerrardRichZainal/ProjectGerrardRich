@@ -7,6 +7,12 @@ use App\Models\Experience;
 use App\Models\Category;
 use App\Models\Job;
 
+// 🔹 PORTFOLIO
+Route::get('/portfolio', function () {
+    $portfolios = \App\Models\Portfolio::with(['category', 'job'])->latest()->get();
+    return view('portfolio', ['portfolios' => $portfolios]);
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
