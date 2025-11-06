@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Blog;
 use App\Models\Project;
 use App\Models\Experience;
+use App\Models\Category;
+use App\Models\Job;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,10 +30,10 @@ Route::get('/blog', function () {
     return view('blog', compact('blogs', 'lang'));
 });
 
-// 🔹 PROJECT
+// 🔹 PROJECT (termasuk relasi ke Category)
 Route::get('/project', function () {
     $lang = request()->get('lang') === 'id' ? 'id' : 'en';
-    $projects = Project::latest()->get();
+    $projects = Project::with('category')->latest()->get();
     return view('project', compact('projects', 'lang'));
 });
 
@@ -40,4 +42,25 @@ Route::get('/experience', function () {
     $lang = request()->get('lang') === 'id' ? 'id' : 'en';
     $experiences = Experience::latest()->get();
     return view('experience', compact('experiences', 'lang'));
+});
+
+// 🔹 CATEGORY (cek relasi category -> projects)
+Route::get('/category', function () {
+    $lang = request()->get('lang') === 'id' ? 'id' : 'en';
+    $slug = request()->get('slug');
+
+    if ($slug) {
+        $category = Category::with('projects')->where('slug', $slug)->firstOrFail();
+        return view('category', compact('category', 'lang'));
+    }
+
+    $categories = Category::with('projects')->get();
+    return view('category', compact('categories', 'lang'));
+});
+
+// 🔹 JOBS
+Route::get('/jobs', function () {
+    $lang = request()->get('lang') === 'id' ? 'id' : 'en';
+    $jobs = Job::latest()->get();
+    return view('jobs', compact('jobs', 'lang'));
 });

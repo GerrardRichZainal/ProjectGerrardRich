@@ -68,11 +68,27 @@
       </button>
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarContent">
-        <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+          <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
           <li class="nav-item"><a class="nav-link text-white" href="/home">Home</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/about">About</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/project">Project</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link text-white" href="/jobs">Jobs</a></li>
+
+          {{-- Category dropdown (uses $allCategories shared from AppServiceProvider) --}}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="catDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Category</a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="catDropdown">
+              @if(isset($allCategories) && $allCategories->count())
+                @foreach($allCategories as $cat)
+                  <li><a class="dropdown-item" href="{{ url('/category?slug=' . $cat->slug) }}">{{ $cat->name }}</a></li>
+                @endforeach
+              @else
+                <li><span class="dropdown-item">No categories</span></li>
+              @endif
+            </ul>
+          </li>
+
           <li class="nav-item"><a class="nav-link text-white" href="/blog">Blog</a></li>
           <li class="nav-item"><a class="nav-link text-white" href="/contact">Contact</a></li>
 

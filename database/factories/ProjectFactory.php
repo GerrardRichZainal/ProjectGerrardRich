@@ -3,19 +3,22 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Project;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Project>
- */
 class ProjectFactory extends Factory
 {
-    public function definition(): array
+    protected $model = Project::class;
+
+    public function definition()
     {
+        // sesuaikan field dengan migration projects: title, description, image, link, category_id
         return [
             'title' => $this->faker->sentence(3),
             'description' => $this->faker->paragraph(),
-            'image' => 'https://via.placeholder.com/400x250.png?text=Project+Image',
-            'link' => $this->faker->url(),
+            'image' => $this->faker->optional()->imageUrl(640, 480),
+            'link' => $this->faker->optional()->url(),
+            // gunakan kategori yang sudah ada jika tersedia, otherwise buat baru
+            'category_id' => \App\Models\Category::inRandomOrder()->first()->id ?? \App\Models\Category::factory(),
         ];
     }
 }

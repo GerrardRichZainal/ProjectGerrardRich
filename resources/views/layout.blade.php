@@ -100,7 +100,26 @@
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+  <li class="nav-item"><a class="nav-link" href="/blog">Blog</a></li>
+  <li class="nav-item"><a class="nav-link" href="/jobs">Jobs</a></li>
+  <li class="nav-item"><a class="nav-link" href="/experience">Experience</a></li>
+
+        {{-- Category dropdown --}}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="catDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="catDropdown">
+            @if(isset($allCategories) && $allCategories->count())
+              @foreach($allCategories as $cat)
+                <li><a class="dropdown-item" href="{{ url('/category?slug=' . $cat->slug) }}">{{ $cat->name }}</a></li>
+              @endforeach
+            @else
+              <li><span class="dropdown-item">No categories</span></li>
+            @endif
+          </ul>
+        </li>
+
         <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
       </ul>
       <div class="ms-3 d-flex align-items-center gap-2">
